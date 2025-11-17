@@ -242,19 +242,19 @@ def get_default_memory_config():
             "config": vector_store_config
         },
         "llm": {
-            "provider": "openai",
+            "provider": "gemini",
             "config": {
-                "model": "gpt-4o-mini",
+                "model": "gemini-2.0-flash",
                 "temperature": 0.1,
                 "max_tokens": 2000,
-                "api_key": "env:OPENAI_API_KEY"
+                "api_key": "env:GOOGLE_API_KEY"
             }
         },
         "embedder": {
-            "provider": "openai",
+            "provider": "gemini",
             "config": {
-                "model": "text-embedding-3-small",
-                "api_key": "env:OPENAI_API_KEY"
+                "model": "models/text-embedding-004",
+                "api_key": "env:GOOGLE_API_KEY"
             }
         },
         "version": "v1.1"
@@ -358,7 +358,7 @@ def get_memory_client(custom_instructions: str = None):
             config["custom_fact_extraction_prompt"] = instructions_to_use
 
         # ALWAYS parse environment variables in the final config
-        # This ensures that even default config values like "env:OPENAI_API_KEY" get parsed
+        # This ensures that even default config values like "env:GOOGLE_API_KEY" get parsed
         print("Parsing environment variables in final config...")
         config = _parse_environment_variables(config)
 
